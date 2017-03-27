@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Assignment 1</title>
+</head>
+<body>
+<!--script 1-->
+<script type="text/javascript">
+    console.log("script 1");
+    console.log("");
+
+    strVar = "1";
+    boolVar = true;
+    intVar = 1;
+    console.log("strVar = " + strVar);
+    console.log("boolVar = " + boolVar);
+    console.log("intVar = " + intVar);
+    //Testing
+    console.log("");
+
+    function testVariables(var1, var2){
+        if (var1 == var2){
+            console.log(var1 +" is equal to "+ var2);
+        } else{
+            console.log(var1 +" is not equal to "+ var2);
+        }
+        if (var1 === var2){
+            console.log(var1 +" is equal value and type "+ var2);
+        } else{
+            console.log(var1 +" is not equal value and type "+ var2);
+        }
+        console.log("");
+    }
+
+    console.log("Testing var to bool");
+    testVariables(strVar, boolVar);
+    console.log("Testing var to int");
+    testVariables(strVar, intVar);
+    console.log("Testing bool to int");
+    testVariables(boolVar, intVar);
+</script>
+<!--script 2-->
+<script type="text/javascript">
+    console.log("script 2");
+    console.log("");
+    intCount = 10;
+    while (intCount >= 0){
+        console.log(intCount);
+        var intCount = intCount - 1;
+    }
+    console.log("");
+    intCount = 0;
+    for (intCount; intCount <= 10; intCount++){
+        console.log(intCount);
+    }
+    console.log("");
+    intCount = 10;
+    for (intCount; intCount > 0; intCount--) {
+        if (intCount % 2 == 0) {
+            console.log(intCount);
+        }
+    }
+</script>
+<!--script 3-->
+<input type="text" class="field"><br />
+<div class="text">STRING</div>
+<script type="text/javascript">
+    //Grab the textbox
+    var field = document.querySelector(".field");
+    field.style.backgroundColor = "#232323";
+    field.style.color = "#d1d1d1";
+    field.style.fontSize = "24px";
+    field.style.fontFamily = "Agency FB";
+    //grab the div
+    var text = document.querySelector(".text");
+    text.style.backgroundColor = "#c72d2d";
+    text.style.color = "#ffc107";
+    text.style.fontSize = "64px";
+    text.style.fontFamily = "Impact";
+</script>
+<!--script 4-->
+<script type="text/javascript">
+    console.log("");
+    console.log("Script 4");
+    var strType = "Here Be A String"
+        //split a string into a array
+        var strArray = strType.split(" ");
+        console.log(strArray);
+        //check if the string includes a matching string within; is case sensitive
+        console.log(strType.includes("Be"));//output is true
+        //
+
+</script>
+
+
+</body>
+</html>
