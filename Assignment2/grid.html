@@ -36,13 +36,23 @@
         //get the number
         var givenNumber = document.getElementById("number").value;
         var numGrid = [];
+        var string = '';
+        var grandSum = 0;
 
         for (var x=0; x < givenNumber; x++){
+            numGrid[x] =[];
+            string += '<tr>';
             for (var y=0; y < givenNumber; y++){
-                numGrid[[x][y]] = randomNumber(1,100);
+                numGrid[x][y] = randomNumber(1,100);
+                string += '<td>' + numGrid[x][y] + '</td>';
+                grandSum += numGrid[x][y];
             }
-            console.log(numGrid);
+            string +='</tr>';
+            grid.innerHTML=string;
         }
+        console.log(numGrid);
+         var avg = grandSum / (givenNumber*givenNumber);
+         console.log(avg);
     }
 
     function randomNumber (min, max) {
