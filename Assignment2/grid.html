@@ -21,6 +21,35 @@
     -->
 </head>
 <body>
+<input type="text" id="number" name="number" placeholder="insert a # to generate grid"/>
+<input type="button" id="button" value="generate">
+
+<table id="grid">
+</table>
+
+<script>
+    var grid = document.getElementById("grid");
+    var btn = document.getElementById("button");
+    btn.addEventListener("click", genGrid);
+
+    function genGrid(){
+        //get the number
+        var givenNumber = document.getElementById("number").value;
+        var numGrid = [];
+
+        for (var x=0; x < givenNumber; x++){
+            for (var y=0; y < givenNumber; y++){
+                numGrid[[x][y]] = randomNumber(1,100);
+            }
+            console.log(numGrid);
+        }
+    }
+
+    function randomNumber (min, max) {
+        return Math.floor (Math.random() * (max - min + 1)) + min;
+    }
+
+</script>
 
 </body>
 </html>
