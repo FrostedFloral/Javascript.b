@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 1 > Script 3</title>
+    <script>
+    /* script3.html
+    * Create a form with a input field and some text on the page inside of a div tag.
+    * Use the query selector to select the two elements on the page and change the style.
+    * Change the color, fontSize and fontFamily.
+    * Both the field element and the div element should be different.*/
+    </script>
+</head>
+<body>
+<!--script 3-->
+<input type="text" class="field"><br />
+<div class="text">STRING</div>
+<script type="text/javascript">
+    //Grab the textbox
+    var field = document.querySelector(".field");
+    field.style.backgroundColor = "#232323";
+    field.style.color = "#d1d1d1";
+    field.style.fontSize = "24px";
+    field.style.fontFamily = "Agency FB";
+    //grab the div
+    var text = document.querySelector(".text");
+    text.style.backgroundColor = "#c72d2d";
+    text.style.color = "#ffc107";
+    text.style.fontSize = "64px";
+    text.style.fontFamily = "Impact";
+</script>
+</body>
+</html>

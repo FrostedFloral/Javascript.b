@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 1 > Script 1</title>
+    <script>
+    /* script1.html
+    * Create three JavaScript Variables each with it's own type.
+    * String, boolean, integer.
+    * Use == and === to compare each variable with the other in an IF/else statement.
+    * Display a message using console.log if the statement is true or else false. */
+    </script>
+</head>
+<body>
+<!--script 1-->
+<script type="text/javascript">
+    console.log("script 1");
+    console.log("");
+
+    //create variables
+    strVar = "1";
+    boolVar = true;
+    intVar = 1;
+
+    //display value of variables in console
+    console.log("strVar = " + strVar);
+    console.log("boolVar = " + boolVar);
+    console.log("intVar = " + intVar);
+    console.log("");
+
+    //function to test two variables
+    function testVariables(var1, var2){
+
+        //test if two variables are equal value to another
+        if (var1 == var2){
+            console.log(var1 +" is equal to "+ var2);
+        } else{
+            console.log(var1 +" is not equal to "+ var2);
+        }
+
+        //test if two variables are equal value and type
+        if (var1 === var2){
+            console.log(var1 +" is equal value and type "+ var2);
+        } else{
+            console.log(var1 +" is not equal value and type "+ var2);
+        }
+        console.log("");
+    }
+
+    //plug in the variables
+    console.log("Testing var to bool");
+    testVariables(strVar, boolVar);
+    console.log("Testing var to int");
+    testVariables(strVar, intVar);
+    console.log("Testing bool to int");
+    testVariables(boolVar, intVar);
+</script>
+</body>
+</html>

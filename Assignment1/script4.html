@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 1 > Script 4</title>
+    <script>
+    /*script4.html
+    * Create two variables, a String type and an Integer type.
+    * Find three different methods (functions) of the String and Integer Classes
+    * that can be used with the variables and use them on the page.
+    * Please also add a comment about the methods purpose.
+    * You are not allowed to use this example.
+         toUpperCase() converts the string to all upper case characters
+         var str1 = 'Hello World!';
+         var strt2 = str1.toUpperCase();
+    */
+    </script>
+</head>
+<body>
+<!--script 4-->
+<script type="text/javascript">
+    console.log("Script 4");
+
+    /*String Methods*/
+    console.log("Methods for a str");
+    var strType = "Here Be A String";
+
+    //split a string into a array
+    console.log(strType.split(" "));//output is an array; ["Here"] ["Be"] ["A"] ["String"]
+
+    //check if the string includes a matching string within; is case sensitive
+    console.log(strType.includes("Be"));//output is true
+
+    //gives you the index location of a character or string
+    console.log(strType.indexOf("A"));//output is 8
+
+    /*Integer Methods*/
+    console.log("Methods for a int");
+    var intType = 8675.309;
+
+    //round the given number to a specified number of decimals; output string
+    console.log(intType.toFixed(2));
+
+    //displays the number down to it's given length; output string
+    console.log(intType.toPrecision(10));
+
+    //displays the number to a given exponent; output string
+    console.log(intType.toExponential(3));
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 1 > Script 2</title>
+    <script>
+    /* script2.html
+    * Write two loops,
+    * one that counts from 10 to 0
+    * and another that counts from 0 to 10.
+    * Use a for loop for one and a while loop for the other.
+    * For the third loop have a loop that will loop from 0 to 10
+    * but only output the count if it is a divisible by two.
+    * You will need to use a for loop and an if statement with in the loop.
+    * Your logic should use the modulus operator.
+    * Use console.log to display the loop count. */
+    </script>
+</head>
+<body>
+<!--script 2-->
+<script type="text/javascript">
+    console.log("script 2");
+    console.log("");
+
+    //count down; from 10 to 0
+    intCount = 10;
+    while (intCount >= 0){
+        console.log(intCount);
+        var intCount = intCount - 1;
+    }
+
+    //count up; from 0 to 10
+    console.log("");
+    intCount = 0;
+    for (intCount; intCount <= 10; intCount++){
+        console.log(intCount);
+    }
+
+    //count down; from 10 to 0; display only if number is divisible from 2
+    console.log("");
+    intCount = 10;
+    for (intCount; intCount > 0; intCount--) {
+        if (intCount % 2 == 0) {
+            console.log(intCount);
+        }
+    }
+</script>
+</body>
+</html>
