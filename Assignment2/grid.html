@@ -1,3 +1,4 @@
+    <!-- Nathan Stone | SE251.05 | 03/28/2017 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +20,25 @@
     if not a multiple of 3 but a multiple of 2, display the cell with a blue background.
     Finally, display the average for all cells.
     -->
+    <style>
+        td{
+            color: #d8d8d8;
+            background-color: #0e0e0e; 
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+        .red{
+            background-color: #bf2318;
+        }
+        .blue{
+            background-color: #1491ff;
+        }
+    </style>
 </head>
 <body>
-<input type="text" id="number" name="number" placeholder="insert a # to generate grid"/>
-<input type="button" id="button" value="generate">
+    <div><input type="text" id="number" name="number" placeholder="insert a # to generate grid"/>
+<input type="button" id="button" value="generate"><div id="displayAvg"></div></div>
 
 <table id="grid">
 </table>
@@ -30,11 +46,13 @@
 <script>
     var grid = document.getElementById("grid");
     var btn = document.getElementById("button");
+    var display = document.getElementById("displayAvg");
     btn.addEventListener("click", genGrid);
 
     function genGrid(){
-        //get the number
+        //get the number in the textbox
         var givenNumber = document.getElementById("number").value;
+        //init variables for use
         var numGrid = [];
         var string = '';
         var grandSum = 0;
@@ -43,16 +61,25 @@
             numGrid[x] =[];
             string += '<tr>';
             for (var y=0; y < givenNumber; y++){
+                //generate ran number
                 numGrid[x][y] = randomNumber(1,100);
-                string += '<td>' + numGrid[x][y] + '</td>';
+                //set color red if /3
+                if (numGrid[x][y] % 3 === 0){
+                    string += '<td class="red">' + numGrid[x][y] + '</td>';
+                } //else blue if /2
+                else if (numGrid[x][y] % 2 === 0){
+                    string += '<td class="blue">' + numGrid[x][y] + '</td>';
+                } else {
+                    string += '<td>' + numGrid[x][y] + '</td>';
+                }
                 grandSum += numGrid[x][y];
             }
             string +='</tr>';
             grid.innerHTML=string;
         }
         console.log(numGrid);
-         var avg = grandSum / (givenNumber*givenNumber);
-         console.log(avg);
+        var avg = grandSum / (givenNumber*givenNumber);
+        display.innerHTML='<td>The average of the numbers = '+avg.toPrecision(5)+'</td>';
     }
 
     function randomNumber (min, max) {
