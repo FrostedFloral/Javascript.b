@@ -53,19 +53,28 @@ function showCalendar (mth, yr) {
     }
 
 
-
-    var str = "<ul>";
-    str += "<li>Number of days in the month: " + numberOfDaysInMonth + "</li>";
-    str += "<li>First day of the week: " + firstDayOfWeek + " (" + daysOfTheWeek[firstDayOfWeek] + ")</li>";
-
-    str += "</ul>";
-
+    /*
+    **    var str = "<ul>";
+    **    str += "<li>Number of days in the month: " + numberOfDaysInMonth + "</li>";
+    **    str += "<li>First day of the week: " + firstDayOfWeek + " (" + daysOfTheWeek[firstDayOfWeek] + ")</li>";
+    **
+    **    str += "</ul>";
+    */
 
     $("#results").html(cal);
-    //$("#results").html(str);
-
-    
-    
 }
 
 
+$(document).ready(function () {
+    $(".day").click(function (){
+        //get class name
+        var thisClass = $(this).attr("class");
+        if ( thisClass == "day"){
+            $(this).addClass('avalible');
+        } else if (thisClass == "day abalible"){
+            $(this).addClass('unavalible');
+            $(this).removeClass('avalible');
+        }
+    });
+});
+//
