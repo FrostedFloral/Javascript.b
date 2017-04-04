@@ -1,3 +1,19 @@
+    /* Nathan Stone | SE251.05 | 04/04/2017
+
+    Assignment 3
+
+    The objective of this assignment is to practice DOM manipulation with jQuery.
+    Download lab3.zipView in a new window as your base assignment.
+    Your task is to create a JavaScript application that allows a user to specify
+    their availability to an employer. You will need to dynamically create a grid
+    that looks like the below. It is okay to hard code the months and years (2016-2018).
+    Changing the month and/or year will update the grid to represent the correct month and year.
+    Note the following:
+    - clicking a cell in the grid once will set the availability to green;
+    - if a cell is green and you click it again; it will turn red
+    - clicking a red cell will clear the background color
+    - clicking the all month available button will set all days of the month to green
+    - clicking the all month unavailable (red) button will set all days of the month to red */
 
 var daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -61,7 +77,7 @@ function showCalendar (mth, yr) {
 
     //display calender
     $("#results").html(cal);
-    
+
     $(document).ready(function () {
         //changing one day
         $(".day").click(function (){
@@ -69,33 +85,39 @@ function showCalendar (mth, yr) {
             var thisClass = $(this).attr("class");
             //get the inner html of div; the dated date
             var datedDate = $(this).html();
+            //get only day class divs and only if there is html inside
             if ( thisClass == "day" && datedDate !== ""){
-                    $(this).addClass('avalible');
-            } else if (thisClass == "day avalible" && datedDate !== ""){
-                    $(this).removeClass("avalible");
-                    $(this).addClass("unavalible");
+                    $(this).addClass('available');
+            } else if (thisClass == "day available" && datedDate !== ""){
+                    $(this).removeClass("available");
+                    $(this).addClass("unavailable");
             } else if (datedDate !== ""){
-                    $(this).removeClass("unavalible");
+                    $(this).removeClass("unavailable");
             }
         });
-        //button for complete avaliblity
+        $(".day").hover(function () {
+            if ($(this).html() !== ""){
+                $(this).css("cursor", "pointer");
+            }
+        });
+        //button for complete availability
         $("#yes").click(function (){
                 //get each div with the day class
             $(".day").each(function (){
-                    //avoid the nondays
+                    //avoid the non-days
                     if ($(this).html() !== ""){
-                        //add avalible | remove unavalible
-                        $(this).addClass('avalible');
-                        $(this).removeClass('unavalible');
-                    }     
+                        //add available | remove unavailable
+                        $(this).addClass('available');
+                        $(this).removeClass('unavailable');
+                    }
             });
         });
-        //button for complete unavaliblity
+        //button for complete unavailability
         $("#no").click(function (){
             $(".day").each(function (){
                     if ($(this).html() !== ""){
-                            $(this).addClass('unavalible');
-                            $(this).removeClass('avalible');
+                            $(this).addClass('unavailable');
+                            $(this).removeClass('available');
                     }     
             });
         });

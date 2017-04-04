@@ -1,3 +1,11 @@
+select{
+    font-size: 64px;
+    border: none;
+    -webkit-appearance: inherit;
+    border-left: 20px double;
+    border-bottom: 20px double;
+    cursor: pointer;
+}
 .main {
     margin-left:50px;
     margin-top:50px;}
@@ -17,11 +25,12 @@
     margin-left:5px;
     text-align: center;
     vertical-align: middle;
-    line-height: 50px;}
-.avalible{
+    line-height: 50px;
+}
+.available{
     background-color: green;
 }
-.unavalible{
+.unavailable{
     background-color: red;
 }
 .row {
