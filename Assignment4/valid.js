@@ -1,48 +1,47 @@
-    /* Nathan Stone | SE251.05 |
+/* Nathan Stone | SE251.05 |
 
-    Assignment 4
+ Assignment 4 , the former
 
-    */
+ */
 
 
-$(document).ready(function(){
+$(document).ready(function () {
     //when submit is clicked
     $("#submitAgreement").click(function () {
-        //check full name
-        emptyinput("fullname");
+        //check full name | you provide the selector for the desired input and accompanied label
+        checkInput($("#fullname"), $('label[for="fullname"]'));
         //check email
-        if ($("#email").val() === ""){
-            $('label[for="email"]').addClass('error');
-        }
+        checkInput($("#email"), $('label[for="email"]'));
         //check phone
-        if ($("#phone").val() === ""){
-            $('label[for="phone"]').addClass('error');
-        }
+        checkInput($("#phone"), $('label[for="phone"]'));
         //check description
-        if ($("#description").val() === ""){
-            $('label[for="description"]').addClass('error');
-        }
+        checkInput($("#description"), $('label[for="description"]'));
         //check not/agree
         if (!$("input[name='agreeForm']:checked").val()) {
             $('label[for="agree"]').addClass('error');
             $('label[for="notagree"]').addClass('error');
         }
         else {
-
+            $('label[for="agree"]').removeClass('error');
+            $('label[for="notagree"]').removeClass('error');
         }
-        if ($("label").hasClass('error')){
-            return(false);
+        //check if there is any errors
+        if ($("label").hasClass('error')) {
+            return (false);
         }
     });
-
+    //need to clear the form when the return produces
 
 });
 
-function emptyinput(input) {
-    if ($("#"+input).val() === ""){
-        $('label[for=input]').addClass('error');
-    }else{
-        $('label[for=input]').removeClass('error');
+function checkInput(input, label) {
+    //check if the input is empty
+    if (input.val() === "") {
+        //if so, add class of error to the label
+        label.addClass('error');
+    } else {
+        //else, remove error
+        label.removeClass('error');
     }
 }
 
