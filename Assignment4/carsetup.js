@@ -1,3 +1,11 @@
+/* Nathan Stone | SE251.05 | 04/18/2017
+ Assignment 4
+ Please see the attached zip file. Go through the file carsetup.js and fill in the comments.
+ Do not touch any of the other files. Turn in the zip file with the modified carsetup.js
+ along with the other (unchanged!) files.
+ */
+
+
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
 var center = c.width / 2;
@@ -34,15 +42,15 @@ console.log(protocar);
 
  */
 var car = {
-    width:400,
-    front:100,
-    rear:100,
-    roof:100,
-    color:"#ff0000",
-    sponsor:{name:"", decal:false},
-    ft:{x:600,y:550,radius:100,color:"#000"},
-    rt:{x:300,y:550,radius:100,color:"#000"},
-    topLimit:"550"
+    width: 400,
+    front: 100,
+    rear: 100,
+    roof: 100,
+    color: "#ff0000",
+    sponsor: {name: "", decal: false},
+    ft: {x: 600, y: 550, radius: 100, color: "#000"},
+    rt: {x: 300, y: 550, radius: 100, color: "#000"},
+    topLimit: "550"
 }
 
 var timer = setInterval(animate, 100 / 60);
@@ -66,7 +74,7 @@ function animate() {
     car.rear = rearSlider.value;
 
     //convert the carWidth's value to a number and assign it to the car's width property
-    car.width =  carWidth.value;
+    car.width = carWidth.value;
 
     //set the roof, front and rear sliders' .max attributes to the car's topLimit property
     car.roof.max = car.topLimit;
@@ -99,7 +107,7 @@ function animate() {
      2. set the car's sponsor decal to false
 
      */
-    if (sponsored.checked == true){
+    if (sponsored.checked == true) {
         car.sponsor.decal = true;
         car.sponsor.name = sponsorNameBox.value;
     } else {
