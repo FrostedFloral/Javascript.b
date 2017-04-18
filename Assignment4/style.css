@@ -26,7 +26,8 @@
 		section 
 		{
 			width:61%;
-			float:right;
+			float:left;
+			clear: left;
 			background-color:#ccc;
 			padding:2%;
 		}
