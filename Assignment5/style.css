@@ -1,0 +1,77 @@
+@charset "UTF-8";
+/**
+		{
+			border:solid .1em black;
+		}*/
+
+		#wrapper
+		{
+			width:100%;
+		}
+		aside
+		{
+			width:30%;
+			float:left;
+			margin-right:5px;
+            color:#bbb;
+		}
+		.controls
+		{
+			background-color:#333;
+			float:left;
+			width:100%;
+			margin-bottom:2%;
+			padding:25px;
+		}
+		section 
+		{
+			width:61%;
+			float:left;
+			clear: left;
+			background-color:#ccc;
+			padding:2%;
+		}
+		footer
+		{
+			clear:both;
+		}
+		canvas
+		{
+		background-color:none;
+		}
+		#engineSpecs
+		{
+			
+		}
+		#weight
+		{
+			background-color:red;
+			width:10px;
+			height:10px;
+		}
+		#power
+		{
+			background-color:green;
+			width:10px;
+			height:10px;
+		}
+.row{
+	
+	width:100%;
+	clear:left;
+}
+
+.row label {
+	width:25%;
+	text-align:right;
+	float:left;
+	display:block;
+	margin-right:2%;
+}
+.text{width:15%; float:left;float:left;display:block;}
+.range {
+	width:50%;
+	text-align:left;
+	float:left;
+	display:block;
+}

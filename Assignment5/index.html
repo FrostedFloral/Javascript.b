@@ -1,0 +1,76 @@
+<!Doctype HTML>
+<html>
+<head>
+	<title>
+		Car
+	</title>
+	<link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="wrapper">
+	<aside>
+		<form>
+		<div class="controls">
+			<div class="row" id="car-width">
+				<label>car width</label>
+				<span><!--<input type="text" value="550" class="text" />--></span>
+				<input type="range" value="550" class="range" min="50" max="550" step="1"/>
+			</div>
+			<div class="row" id="wheel-distance">
+				<label>wheel distance</label>
+				<!--<input type="text" value="150"  class="text" />-->
+				<input type="range" value="150" class="range" min="0" max="250" step="1"/>
+			</div>
+			<div class="row" id="roof-height">
+				<label>roof height</label>
+				<!--<input type="text" value="100" class="text" />-->
+				<input type="range" value="100" class="range" min="0" max="600" step="1"/>
+			</div>	
+			<div class="row" id="front-pitch">
+				<label>font height</label>
+				<!--<input type="text" value="100" class="text" />-->
+				<input type="range" value="100" class="range" min="0" max="600" step="1"/>
+			</div>
+			<div class="row" id="rear-pitch">
+				<label>rear height</label>
+				<!--<input type="text" value="100" class="text"/>-->
+				<input type="range" value="100" class="range" min="0" max="600" step="1"/>
+			</div>
+			<div class="row" id="front-tire">
+				<label>front tire</label>
+				<!--<input type="text" value="100" class="text"/>-->
+				<input type="range" value="100" class="range" min="10" max="300" step="1"/>
+			</div>
+			<div class="row" id="rear-tire">	
+				<label>rear tire</label>
+				<!--<input type="text" value="100" class="text"/>-->
+				<input type="range" value="100" class="range" min="10" max="300" step="1"/>
+			</div>
+			<div class="row" id="color">	
+				<label>color</label>
+				<input type="text" value="#ff0000" class="text"/>
+			</div>	
+			<div class="row" id="sponsor">
+				<label>Sponsored</label>
+				<input type="checkbox" value="sponsored" class="text"/>
+				<input type="text" value="" class="range"/>
+			</div>
+		</div>
+		</form>
+	</aside>
+	<section>
+		<div id="car-display">
+			<canvas id="canvas" width="900" height="600">
+			</canvas>
+		</div>
+	</section>
+	<footer></footer>
+</div>
+</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="classes.js"></script>
+    <script type="text/javascript" src="carsetup.js"></script>
+    
+  
+    </script>
+</html>
