@@ -86,6 +86,19 @@ if (localStorage.strCar != undefined){
     btnDelete.disabled = false;
     car = JSON.parse(localStorage.strCar);
     colorInput.value =  car.color;
+    roofSlider.value = car.roof;
+    frontSlider.value = car.front;
+    rearSlider.value = car.rear;
+    carWidth.value = car.width;
+    car.topLimit = car.roof.max;
+    car.topLimit = car.front.max;
+    car.topLimit = car.rear.max;
+    ftSlider.value = car.ft.radius;
+    rtSlider.value = car.rt.radius;
+    sponsorNameBox.value = car.sponsor.name;
+    if (car.sponsor.decal === true){
+        sponsored.checked = true;
+    }
 }
 
 
