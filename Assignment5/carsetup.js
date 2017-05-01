@@ -1,8 +1,24 @@
 /* Nathan Stone | SE251.05 | 04/18/2017
- Assignment 4
- Please see the attached zip file. Go through the file carsetup.js and fill in the comments.
- Do not touch any of the other files. Turn in the zip file with the modified carsetup.js
- along with the other (unchanged!) files.
+ Assignment 5
+ Building on last week's assignment, incorporate local storage within your code.
+ You need to do this by adding the following buttons to the Interface and implement the functionality:
+ - Save Car: saves the car’s current attributes to Local Storage
+ - Load Car: loads the car’s attributes from local storage
+ - Delete Car: deletes the car’s attributes from local storage
+ - Reset Car: redraw the car with its original attributes (use the object literal from the previous assignment)
+ The Load Car and Delete Car buttons should be disabled when there is no car in Local Storage.
+ Hints: You will likely use the following JavaScript concepts:
+ - document.querySelector
+ - document.querySelector
+ - addEventListener
+ - disabled property
+ - localStorage
+ - localStorage.removeItem
+ - JSON.stringify
+ - JSON.parse
+ Since localStorage can only hold simple values, you will stringify the car object and turn it into a JSON string.
+ JSON.parse will take the JSON string and convert it back to a JavaScript object.
+ Do not store each individual car property in localStorage.
  */
 
 
@@ -32,6 +48,11 @@ var sponsored = document.querySelector("#sponsor .text");
 
 var sponsorNameBox = document.querySelector("#sponsor .range");
 
+var btnSave = document.querySelector("#save");
+var btnLoad = document.querySelector("#load");
+var btnReset = document.querySelector("#reset");
+var btnDelete = document.querySelector("#delete");
+
 
 //Open up the console and look at the properties for the protocar object
 console.log(protocar);
@@ -54,6 +75,32 @@ var car = {
 }
 
 var timer = setInterval(animate, 100 / 60);
+
+btnSave.addEventListener("click", saveCar);
+btnLoad.addEventListener("click", loadCar);
+//btnReset.addEventListener("click", resetCar);
+btnDelete.addEventListener("click", deleteCar);
+
+if (localStorage.strCar != undefined){
+    btnLoad.disabled = false;
+    btnDelete.disabled = false;
+    car = JSON.parse(localStorage.strCar);
+    colorInput.value =  car.color;
+}
+
+
+function saveCar(){
+    localStorage.strCar = JSON.stringify(car);
+}
+function loadCar(){
+    car = JSON.parse(localStorage.strCar);
+    colorInput.value = car.color;
+    roofSlider.value = car.roof;
+    return false;
+}
+function deleteCar() {
+    localStorage.removeItem("strCar");
+}
 
 function animate() {
     ctx.clearRect(0, 0, c.width, c.height);

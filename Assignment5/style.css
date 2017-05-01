@@ -82,6 +82,9 @@
 	width: 65px;
 	height: 24px;
 }
+.btn:disabled{
+	color: #555;
+}
 .border{
 	border: 1px solid #bbb;
 	width:130px;
