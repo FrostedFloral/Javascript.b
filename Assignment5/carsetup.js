@@ -48,12 +48,6 @@ var sponsored = document.querySelector("#sponsor .text");
 
 var sponsorNameBox = document.querySelector("#sponsor .range");
 
-var btnSave = document.querySelector("#save");
-var btnLoad = document.querySelector("#load");
-var btnReset = document.querySelector("#reset");
-var btnDelete = document.querySelector("#delete");
-
-
 //Open up the console and look at the properties for the protocar object
 console.log(protocar);
 
@@ -76,15 +70,28 @@ var car = {
 
 var timer = setInterval(animate, 100 / 60);
 
+/* S T A R T   A S S I G N M E N T  5 */
+
+//Query selectors for the buttons
+var btnSave = document.querySelector("#save");
+var btnLoad = document.querySelector("#load");
+var btnReset = document.querySelector("#reset");
+var btnDelete = document.querySelector("#delete");
+
+//the event listeners for the buttons
 btnSave.addEventListener("click", saveCar);
 btnLoad.addEventListener("click", loadCar);
-//btnReset.addEventListener("click", resetCar);
+btnReset.addEventListener("click", resetCar);
 btnDelete.addEventListener("click", deleteCar);
 
+//this loads a car if there is one in local storage
 if (localStorage.strCar != undefined){
+    //activate buttons
     btnLoad.disabled = false;
     btnDelete.disabled = false;
+    //parse the string
     car = JSON.parse(localStorage.strCar);
+    //display stored car
     colorInput.value =  car.color;
     roofSlider.value = car.roof;
     frontSlider.value = car.front;
@@ -96,23 +103,40 @@ if (localStorage.strCar != undefined){
     ftSlider.value = car.ft.radius;
     rtSlider.value = car.rt.radius;
     sponsorNameBox.value = car.sponsor.name;
+    wheelDistance.value = car.ft.x - center;
     if (car.sponsor.decal === true){
         sponsored.checked = true;
     }
 }
-
-
+//checks if there is a car in temp (for reset purpose)
+if (localStorage.temp != undefined){
+    //move the temp string back
+    localStorage.strCar = localStorage.temp;
+    localStorage.removeItem("temp");
+    //activate buttons
+    btnLoad.disabled = false;
+    btnDelete.disabled = false;
+}
+//saves the displayed car object as a string in local storage
 function saveCar(){
     localStorage.strCar = JSON.stringify(car);
 }
+//calls the locally stored sting and parses it into the car object
 function loadCar(){
     car = JSON.parse(localStorage.strCar);
-    colorInput.value = car.color;
-    roofSlider.value = car.roof;
     return false;
 }
+//if there is a locally stored car, it moves it temporally to recall the original status of the car
+function resetCar(){
+    if (localStorage.strCar != undefined){
+        localStorage.temp = localStorage.strCar;
+        localStorage.removeItem("strCar");
+    }
+}
+//deletes any saved car strings locally
 function deleteCar() {
     localStorage.removeItem("strCar");
+    localStorage.removeItem("temp");
 }
 
 function animate() {
