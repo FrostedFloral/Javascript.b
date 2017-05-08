@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="jquery-2.1.3.js"></script>
+		<style type="text/css">
+			#myCanvas {left: 500px; top:500px;}
+		</style>
+		<title>Canvas Basics</title>
+	</head>
+	<body>
+			<canvas id="myCanvas" width="500" height="500"></canvas>
+	</body>
+</html>
+
+<script>
+	var canvas;
+	var context;
+	var count = 0;
+	function randNum(max) {
+         return Math.ceil(Math.random()*max) + 1;
+     }
+
+    function printRandomNumber (color, yAxis) {
+        count++;
+        var end = canvas.width;
+        if (count <= end) {
+            var num = randNum (20);
+            boxMove(color, count);
+            console.log(count, num);
+            setTimeout(printRandomNumber, randNum(5)*100);
+        }
+		
+	 }
+    function boxMove (color, count){
+	    context.fillStyle=color;
+	    context.fillRect(count,10,2,2);
+        context.clearRect(count-5,10,2,2);
+	}
+	 
+$(document).ready(function(){
+	canvas = document.getElementById('myCanvas');
+	context = canvas.getContext('2d');
+    printRandomNumber ("blue", 10);
+    printRandomNumber ("red", 20);
+	var move = 10;
+
+
+	context.fillStyle="red";
+
+	context.fillRect (40, 40, 100, 100);
+	context.clearRect(30,20,100,50);
+	context.beginPath(); // start the path
+	context.moveTo (40, 40); //set path origin
+	context.lineTo (340, 40); // destination
+	context.closePath (); // close path 
+	context.stroke (); // Outline  the path
+});
+</script>
+
