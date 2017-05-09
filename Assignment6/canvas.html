@@ -15,33 +15,46 @@
 <script>
 	var canvas;
 	var context;
-	var count = 0;
-	function randNum(max) {
+    var blueCount = 0;
+    var redCount = 0;
+    canvas = document.getElementById('myCanvas');
+    context = canvas.getContext('2d');
+    var end = canvas.width;
+
+    function randNum(max) {
          return Math.ceil(Math.random()*max) + 1;
      }
 
-    function printRandomNumber (color, yAxis) {
-        count++;
-        var end = canvas.width;
-        if (count <= end) {
+    function redCar (color, yAxis) {
+        redCount++;
+        if (redCount <= end) {
             var num = randNum (20);
-            boxMove(color, count);
-            console.log(count, num);
-            setTimeout(printRandomNumber, randNum(5)*100);
+            boxMove(color, redCount, yAxis);
+            console.log(redCount, num);
+            setTimeout(redCar(color, yAxis), randNum(5)*100);
         }
-		
-	 }
-    function boxMove (color, count){
+
+    }
+    function blueCar (color, yAxis) {
+        blueCount++;
+        if (blueCount <= end) {
+            var num = randNum (20);
+            boxMove(color, blueCount, yAxis);
+            console.log(blueCount, num, yAxis);
+            setTimeout(blueCar(color, yAxis), randNum(5)*100);
+        }
+
+    }
+    function boxMove (color, count, y){
 	    context.fillStyle=color;
-	    context.fillRect(count,10,2,2);
-        context.clearRect(count-5,10,2,2);
+	    context.fillRect(count,y,2,2);
+        context.clearRect(count-5,y,2,2);
 	}
 	 
 $(document).ready(function(){
-	canvas = document.getElementById('myCanvas');
-	context = canvas.getContext('2d');
-    printRandomNumber ("blue", 10);
-    printRandomNumber ("red", 20);
+
+    blueCar ("blue", 10);
+    redCar ("red", 20);
 	var move = 10;
 
 

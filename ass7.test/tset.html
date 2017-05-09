@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Starwars</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  
+</head>
+<body>
+
+<div class="container">
+    <h1>Starwars</h1>
+
+    <div id="movies">
+		
+	</div>
+	<div id="movie">
+		
+	</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    var months = [ "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December" ];
+    var days= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+	var global;
+    $(function() {
+		
+		var starwarsFilms = "http://pokeapi.co/api/v2/pokemon/";
+		$.get( starwarsFilms,
+		
+			function( data ) {
+			  var str = "";
+			  
+			  console.log(data);
+			  for (i=0; i<data.results.length;i++)
+			  {
+				str += "<a href='' data-url='" + data.results[i].url + "' class='link'>" + data.results[i].name + "</a><br />";
+			  }
+			  $("#movies").html (str);
+			  
+			  $( ".link" ).on( "click", function(e) {
+					var str = "";
+					e.preventDefault();
+					
+					url = $(this).data("url");
+					
+					$.get( url, function (data) {
+						global = data;
+						str = "<h3>" + data.name + "</h3>";
+						$("#movie").html (str);
+					});
+				}
+			  );
+			});
+			
+		
+    });
+
+</script>
