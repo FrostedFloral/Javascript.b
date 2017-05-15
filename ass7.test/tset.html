@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Starwars</title>
+    <title>Poke</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   
 </head>
 <body>
 
 <div class="container">
-    <h1>Starwars</h1>
-
-    <div id="movies">
+    <h1>Poke</h1>
+    <input type="text" id="search" placeholder="search pokemon" style="width:300px;" />
+    <input type="button" id="doSearch" value="Perform Search " />
+    <div id="pokes">
 		
 	</div>
-	<div id="movie">
+	<div id="poke">
 		
 	</div>
 
@@ -25,40 +26,60 @@
 </html>
 
 <script type="text/javascript">
-    var months = [ "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December" ];
-    var days= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-
-	var global;
+	var pokesGlobal;
+	var pokeGlobal;
     $(function() {
 		
-		var starwarsFilms = "http://pokeapi.co/api/v2/pokemon/";
-		$.get( starwarsFilms,
-		
+		var pokeAPI = "http://pokeapi.co/api/v2/pokemon/";
+		$.get( pokeAPI,
+
 			function( data ) {
 			  var str = "";
-			  
+			  pokesGlobal = data;
 			  console.log(data);
+			  str += "<table>";
 			  for (i=0; i<data.results.length;i++)
 			  {
-				str += "<a href='' data-url='" + data.results[i].url + "' class='link'>" + data.results[i].name + "</a><br />";
+			      var url = data.results[i].url;
+			      var split = url.split("/");
+			      //#6 in variable split array is the number of poke
+				str += "<td><a href='' data-url='" + url + "' class='link'>" + "# " + split[6] + ": " + data.results[i].name + "</a></td>";
+                  if (i % 4 == 3){
+                      str += "</tr><tr>";
+                  }
 			  }
-			  $("#movies").html (str);
+			  str += "<table/>";
+			  $("#pokes").html (str);
 			  
 			  $( ".link" ).on( "click", function(e) {
 					var str = "";
 					e.preventDefault();
-					
+
 					url = $(this).data("url");
-					
+
 					$.get( url, function (data) {
-						global = data;
-						str = "<h3>" + data.name + "</h3>";
-						$("#movie").html (str);
+						pokeGlobal = data;
+						str += "<h2>" + data.name + "</h2>";
+						str += "<img src=" + data.sprites.front_default + ">";
+						str += "<table><tr><td>Type:</td><td>";
+						for (var i = 0; i < data.types.length; i++)
+                        {
+                            str += data.types[i].type.name + " ";
+                        }
+                        str += "</td></tr>";
+						$("#poke").html (str);
 					});
 				}
 			  );
 			});
+
+        $(function() {
+            $("#doSearch").click (function () {
+                var str = $("#search").value();
+                $("#poke").html (str);
+            }) ;
+
+        });
 			
 		
     });
