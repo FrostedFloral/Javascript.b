@@ -1,0 +1,55 @@
+
+<!---
+	For details on the Edmunds API, see http://developer.edmunds.com/api-documentation/vehicle/
+--->
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<title>Poke</title>
+</head>
+<body>
+	<h1>Poke List</h1>
+	<table id="list">
+	
+	</table>
+	<div id="poke">
+
+	</div>
+</body>
+</html>
+
+<script>
+	var global;
+	
+	$.getJSON( "http://pokeapi.co/api/v2/pokemon/" ,
+		function(data) { 
+			console.log(data); 
+			global = data;
+			var listLength = data.results.length;
+            $("#list").append("<tr>");
+			for (var x = 0; x <= listLength; x++){
+			    var name = data.results[x].name;
+			    var url = data.results[x].url;
+			    var string = "<a href='' data-url='"+ url + "' class='link'>" + name + "</a>";
+				$("#list").append("<td>" + string + "</td>");
+				if (x % 4 == 3){
+                    $("#list").append("</tr><tr>");
+                }
+			}
+            $( ".link" ).on( "click", function(e) {
+                    //var str = "";
+                    e.preventDefault();
+
+                    url = $(this).data("url");
+                	console.log(url);
+                    $.get( url, function (data) {
+						$("#poke").append(data);
+                    });
+                }
+            );
+		}
+	);
+	
+	
+</script>
