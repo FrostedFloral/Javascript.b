@@ -11,22 +11,42 @@
 
 <body>
     <div style="margin-left: 50px; margin-top:50px;">
-		<h2>Zippy</h2>
-		<table>
+		<h2>Your location</h2>
+		<table style="text-align: right;">
 		<tr>
 			<td>Zip:</td>
-			<td><input type="text" id="txtZip" value=""></td>
+			<td><input type="text" id="txtOZip" value=""></td>
+			<td class="error" id="errOZip"></td>
 		</tr><tr>
 			<td>City:</td>
-			<td><input type="text" id="City" value=""></td>
+			<td><input type="text" id="txtOCity" value=""></td>
 		</tr><tr>
 			<td>State:</td>
-			<td><input type="text" id="state" value=""></td>
+			<td><input type="text" id="txtOState" value=""></td>
 		</tr>
 		</table>
 
-		
-		
+		<div id="travel">
+			<h2>Travel info</h2>
+		</div>
+
+		<h2>Destination</h2>
+		<table style="text-align: right;">
+			<tr>
+				<td>Zip:</td>
+				<td><input type="text" id="txtDZip" value=""></td>
+				<td class="error" id="errDZip"></td>
+			</tr><tr>
+			<td>City:</td>
+			<td><input type="text" id="txtDCity" value=""></td>
+		</tr><tr>
+			<td>State:</td>
+			<td><input type="text" id="txtDState" value=""></td>
+		</tr>
+		</table>
+
+
+
 		
     </div>
 </body>
@@ -34,15 +54,73 @@
 </html>
 
 <script>
-
-	var global;
 	$(document).ready(function() {
-		
-		
-		$("#txtZip").keyup(function(e) {
-			var patt = /\d{5}$/;
-			mystring = $(this).val();
-			console.log (mystring, patt.test(mystring));
-		});
+	    var global;
+        $("#txtOZip").val(data.zip_code);
+        $("#txtOCity").val(data.city);
+        $("#txtOState").val(data.region_name);
+	    /*
+	    $.get("https://freegeoip.net/json/", function (data) {
+	        console.log(data);
+            $("#txtOZip").val(data.zip_code);
+            $("#txtOCity").val(data.city);
+            $("#txtOState").val(data.region_name);
+		});*/
+	    $("#travel").hide();
+
+        $("#txtOZip").focusout(function(e) {
+            var patt = /^\d{5}$/;
+            var zipString = $(this).val();
+            if (patt.test(zipString) == true){
+                var url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + zipString;
+                $.get(url, function (data) {
+                    if (data.status != "ZERO_RESULTS"){
+                        $("#txtOCity").val(data.results[0].address_components[1].long_name);
+                        $("#txtOState").val(data.results[0].address_components[2].long_name);
+                        $("#errOZip").html ("");
+                    } else {
+                        $("#txtOCity").val("");
+                        $("#txtOState").val("");
+                        $("#errOZip").html ("Error: No matches");
+                    }
+                });
+            } else{
+                $("#txtOCity").val("");
+                $("#txtOState").val("");
+                $("#errOZip").html ("Error: Invalid zip");
+            }
+            if ($("#errDZip").html() == "" && $("#errOZip").html() == ""){
+                console.log("tets");
+            }
+        });
+
+        $("#txtDZip").focusout(function(e) {
+            var patt = /^\d{5}$/;
+            var zipString = $(this).val();
+            if (patt.test(zipString) == true){
+                var url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + zipString;
+                $.get(url, function (data) {
+                    if (data.status != "ZERO_RESULTS"){
+                        $("#txtDCity").val(data.results[0].address_components[1].long_name);
+                        $("#txtDState").val(data.results[0].address_components[2].long_name);
+                        $("#errDZip").html ("");
+                    } else {
+                        $("#txtDCity").val("");
+                        $("#txtDState").val("");
+                        $("#errDZip").html ("Error: No matches");
+                    }
+                });
+            } else{
+                $("#txtDCity").val("");
+                $("#txtDState").val("");
+                $("#errDZip").html ("Error: Invalid zip");
+            }
+            if ($("#errDZip").html == "" && $("#errOZip").html == ""){
+                console.log("tets");
+            }
+        });
+
+
+
 	});
 </script>
