@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Reg Ex</title>
+    
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
+</head>
+
+<body>
+    <div style="margin-left: 50px; margin-top:50px;">
+		<h2>Zippy</h2>
+		<table>
+		<tr>
+			<td>Zip:</td>
+			<td><input type="text" id="txtZip" value=""></td>
+		</tr><tr>
+			<td>City:</td>
+			<td><input type="text" id="City" value=""></td>
+		</tr><tr>
+			<td>State:</td>
+			<td><input type="text" id="state" value=""></td>
+		</tr>
+		</table>
+
+		
+		
+		
+    </div>
+</body>
+
+</html>
+
+<script>
+
+	var global;
+	$(document).ready(function() {
+		
+		
+		$("#txtZip").keyup(function(e) {
+			var patt = /\d{5}$/;
+			mystring = $(this).val();
+			console.log (mystring, patt.test(mystring));
+		});
+	});
+</script>
