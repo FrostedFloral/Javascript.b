@@ -56,8 +56,8 @@
 <script>
 	$(document).ready(function() {
 	    var global;
-	    $.get("http://geoplugin.net/json", function (data) {
-	        global = data;
+	    $.get("https://freegeoip.net/json/", function (data) {
+	        console.log(data);
 		});
 	    $("#travel").hide();
 
@@ -119,21 +119,22 @@
 		url += orig + "&destinations=";
 		url += dest + "&key=AIzaSyBM7ZDiEbTL9SQXjhx1sQsfAZCR_nX3n2Y";
 		
-		$.ajax({
+/*		$.ajax({
             url: url, 
             type: "GET",   
             dataType: 'jsonp',
             cache: false,
-            success: function(response){                          
-                alert(response);                   
+            success: function(data){
+                var theData = $.parseJSON(data);
+                console.log(theData);
             }           
-        });    
+        });   */
 
 		
-		//$.get (url, function (data) {
-		//	$("#travel").show();
-		//	console.log(data);
-		//});
+		$.get (url, function (data) {
+			$("#travel").show();
+			console.log(data);
+		});
 		
 
 
