@@ -56,16 +56,9 @@
 <script>
 	$(document).ready(function() {
 	    var global;
-        $("#txtOZip").val(data.zip_code);
-        $("#txtOCity").val(data.city);
-        $("#txtOState").val(data.region_name);
-	    /*
-	    $.get("https://freegeoip.net/json/", function (data) {
-	        console.log(data);
-            $("#txtOZip").val(data.zip_code);
-            $("#txtOCity").val(data.city);
-            $("#txtOState").val(data.region_name);
-		});*/
+	    $.get("http://geoplugin.net/json", function (data) {
+	        global = data;
+		});
 	    $("#travel").hide();
 
         $("#txtOZip").focusout(function(e) {
@@ -115,12 +108,37 @@
                 $("#txtDState").val("");
                 $("#errDZip").html ("Error: Invalid zip");
             }
-            if ($("#errDZip").html == "" && $("#errOZip").html == ""){
+            if ($("#errDZip").html() == "" && $("#errOZip").html() == ""){
                 console.log("tets");
+				displayTrip($("#txtOZip").val(),$("#txtDZip").val());
             }
         });
 
+	function displayTrip (orig, dest) {
+		var url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=";
+		url += orig + "&destinations=";
+		url += dest + "&key=AIzaSyBM7ZDiEbTL9SQXjhx1sQsfAZCR_nX3n2Y";
+		
+		$.ajax({
+            url: url, 
+            type: "GET",   
+            dataType: 'jsonp',
+            cache: false,
+            success: function(response){                          
+                alert(response);                   
+            }           
+        });    
 
+		
+		//$.get (url, function (data) {
+		//	$("#travel").show();
+		//	console.log(data);
+		//});
+		
+
+
+	
+	}
 
 	});
 </script>
