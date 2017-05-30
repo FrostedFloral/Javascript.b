@@ -157,7 +157,7 @@
                 $("#list-output").append("|| Salary: $" + global[i].salary + "<br />");
             }}
 	}
-
+	//checks the current index and checks contests it against the highest salary
 	function checkSalary(topIndex,contestedIndex) {
         if (topIndex == undefined){
             topIndex = contestedIndex;
@@ -173,6 +173,7 @@
 		console.log(selector.lastChild.html("ETE"));
     }
 
+    //highlights the highest average salary job in green
     function highestAverage(){
 	    var samp = [[totalSD/countSD, "software"], [totalDB/countDB, "database"] , [totalWD/countWD, "web"]];
         samp.sort()
