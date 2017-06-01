@@ -117,9 +117,10 @@
 	function displayTrip (orig, dest) {
 		var url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=";
 		url += orig + "&destinations=";
-		url += dest + "&key=AIzaSyBM7ZDiEbTL9SQXjhx1sQsfAZCR_nX3n2Y";
+		url += dest + "&key=AIzaSyCdtU9JUy9K5Z8C_QMvcFkEEJS1IGR365o";
+		$("#travel").show();
 		
-/*		$.ajax({
+		$.ajax({
             url: url, 
             type: "GET",   
             dataType: 'jsonp',
@@ -128,17 +129,36 @@
                 var theData = $.parseJSON(data);
                 console.log(theData);
             }           
-        });   */
+        });   
 
 		
 		$.get (url, function (data) {
-			$("#travel").show();
 			console.log(data);
 		});
-		
-
-
+	}
 	
+	var origin1 = new google.maps.LatLng(55.930385, -3.118425);
+	var origin2 = 'Greenwich, England';
+	var destinationA = 'Stockholm, Sweden';
+	var destinationB = new google.maps.LatLng(50.087692, 14.421150);
+
+	var service = new google.maps.DistanceMatrixService();
+	console.log(service);
+	service.getDistanceMatrix(
+	  {
+		origins: [origin1, origin2],
+		destinations: [destinationA, destinationB],
+		travelMode: 'DRIVING',
+		transitOptions: TransitOptions,
+		drivingOptions: DrivingOptions,
+		unitSystem: UnitSystem,
+		avoidHighways: Boolean,
+		avoidTolls: Boolean,
+	  }, callback);
+
+	function callback(response, status) {
+	  // See Parsing the Results for
+	  // the basics of a callback function.
 	}
 
 	});

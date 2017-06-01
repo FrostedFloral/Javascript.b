@@ -120,21 +120,9 @@
                 totalSD = parseInt(data[i].salary) + parseInt(totalSD);
             }
 		}
-        $("#database-analyst-area > .first").html(data[topDB].name.first);
-        $("#database-analyst-area > .last").html(data[topDB].name.last);
-        $("#database-analyst-area > .highest").html("$"+data[topDB].salary);
-        $("#database-analyst-area > .average").html("$"+(totalDB/countDB).toFixed(2));
-
-        $("#web-developer-area > .first").html(data[topWD].name.first);
-        $("#web-developer-area > .last").html(data[topWD].name.last);
-        $("#web-developer-area > .highest").html("$"+data[topWD].salary);
-        $("#web-developer-area > .average").html("$"+(totalWD/countWD).toFixed(2));
-
-        $("#software-engineer-area > .first").html(data[topSD].name.first);
-        $("#software-engineer-area > .last").html(data[topSD].name.last);
-        $("#software-engineer-area > .highest").html("$"+data[topSD].salary);
-        $("#software-engineer-area > .average").html("$"+(totalSD/countSD).toFixed(2));
-        //displayHeads(topDB, totalDB/countDB, $("#database-analyst-area"))
+		displayHeads(topDB, totalDB/countDB, "#database-analyst-area")
+		displayHeads(topWD, totalWD/countWD, "#web-developer-area")
+		displayHeads(topSD, totalSD/countSD, "#software-engineer-area")
 		highestAverage();
 
     });
@@ -167,10 +155,13 @@
         }
         return topIndex;
     }
-    //couldn't figure out how to select children after sending the selector. Didn't want to waste time working on it
-	//would have shaved some code otherwise
+
+	//display head info
     function displayHeads(best, avg, selector) {
-		console.log(selector.lastChild.html("ETE"));
+		$(selector + " > .first").html(global[best].name.first);
+		$(selector + " > .last").html(global[best].name.last);
+		$(selector + " > .highest").html("$"+global[best].salary);
+		$(selector + " > .average").html("$"+(avg).toFixed(2));
     }
 
     //highlights the highest average salary job in green
@@ -178,7 +169,6 @@
 	    var samp = [[totalSD/countSD, "software"], [totalDB/countDB, "database"] , [totalWD/countWD, "web"]];
         samp.sort()
 		var job = samp[samp.length-1][1];
-        console.log(job);
         if (job == "database"){
             $("#database-analyst-area").css("background-color", " rgba(0, 128, 0, 0.29)");
 		} else if ( job == "software"){
